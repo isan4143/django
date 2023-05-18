@@ -14,10 +14,11 @@ def detail(request, slug=None):
 
 def create(request):
     if request.method == 'POST':
-        form = FlowerForm(request.POST)
+        form = FlowerForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('flower/')
+            #return render(request,'flower/')
     else:
         form = FlowerForm()
     return render(request, 'flower/edit.html', {'form': form})
