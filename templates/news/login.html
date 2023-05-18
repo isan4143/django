@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+    <div class="boxLogin">
+      <form action="." method="POST" id="loginform">
+        {% csrf_token %}
+        <div class="fields">
+          <p class="sep">
+            <label class="small" for="username">管理者帳號</label>
+            <input name="username" type="text" id="username" required />
+          </p>
+          <p class="sep">
+            <label class="small" for="password">管理者密碼</label>
+            <input name="password" type="password" id="password" required />
+          </p>
+          <div class="action">
+            <input type="submit" class="butDef" value="登入系統" />
+            <input name="button1" type="button" value="退回首頁" onclick="window.location='/newsindex/'" />
+          </div>
+          <span style="color:red">{{messages}}</span>
+        </div>
+      </form>
+    </div>
+{% endblock %}
