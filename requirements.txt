@@ -3,3 +3,4 @@ django-allauth
 django-widget-tweaks
 Pillow
 django-simple-captcha
+pandas
