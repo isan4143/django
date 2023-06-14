@@ -1,3 +1,11 @@
 {% extends "base.html" %}
-{% block title %}確認訂單{% endblock %}
 
+{% block title %}訂單確認{% endblock %}
+
+{% block content %}
+    <h1>訂單確認</h1>
+    <h2>訂單詳情</h2>
+    <p>訂單編號：{{ order.id }}</p>
+    <p>訂單金額：{{ order.amount }}</p>
+    <!-- 顯示其他訂單相關資訊 -->
+{% endblock %}

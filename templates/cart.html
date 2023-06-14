@@ -1,9 +1,46 @@
 {% extends "base.html" %}
 {% block title %}購物車{% endblock %}
-{% for cart_item in cart_items %}
-  <h2>{{ cart_item.product.name }}</h2>
-  <p>數量：{{ cart_item.quantity }}</p>
-  <hr>
-{% empty %}
-  <p>購物車是空的。</p>
-{% endfor %}
+{% block content %}
+    <h1>購物車</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>商品</th>
+                <th>價格</th>
+                <th>數量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>
+                    <form method="POST" action="{% url 'update_cart' item.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default btn-number" data-type="minus" data-field="quant[{{ item.id }}]">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input type="text" name="quant[{{ item.id }}]" class="form-control input-number" value="{{ item.quantity }}" min="1" max="10">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default btn-number" data-type="plus" data-field="quant[{{ item.id }}]">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger">刪除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'place_order' %}" class="btn btn-primary">下單</a>
+    <a href="/products/" class="btn btn-secondary">繼續逛</a>
+{% endblock %}

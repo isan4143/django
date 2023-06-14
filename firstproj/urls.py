@@ -97,8 +97,12 @@ urlpatterns = [
 
     #shop
     path('products/', shviews.product_list, name='product_list'),
-    path('add-to-cart/<int:product_id>/', shviews.add_to_cart, name='add_to_cart'),
+    path('add_to_cart/<int:product_id>/', shviews.add_to_cart, name='add_to_cart'),
     path('cart/', shviews.cart, name='cart'),
-    path('productdetail/<int:product_id>/',shviews.product_detail, name='product_detail'),
+    path('product_detail/<int:product_id>/',shviews.product_detail, name='product_detail'),
     path('orderconfirm/',shviews.order_confirmation,name='order_confirmation'),
+    path('place_order/',shviews.place_order, name='place_order'),
+    path('update_cart/<int:cart_item_id>/',shviews.update_cart, name='update_cart'),
+    path('order_success/', shviews.order_success, name='order_success'),
+    path('remove_from_cart/<int:cart_item_id>/',shviews.remove_from_cart, name='remove_from_cart'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
