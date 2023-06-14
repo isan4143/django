@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'news',
     'boardapp',
     'captcha',
+    'shop',
 ]
 
 CAPTCHA_NOISE_FUNCTIONS = (

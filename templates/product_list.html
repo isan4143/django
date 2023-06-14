@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}所有商品{% endblock %}
+{% load static %}
+<div class="card-columns">
+    {% for product in products %}
+    <div class="card">
+        <div class="card-body">
+
+        <h5 class="card-title"><a href="{% url 'productdetail' product.id %}">{{ product.name }}</a></h5>
+        <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+        <p class="card-text">{{ product.description | truncatechars:100 }}</p>
+
+        <hr>
+        </div>
+    </div>
+    {% endfor %}
+ </div>

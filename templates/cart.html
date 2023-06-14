@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}購物車{% endblock %}
+{% for cart_item in cart_items %}
+  <h2>{{ cart_item.product.name }}</h2>
+  <p>數量：{{ cart_item.quantity }}</p>
+  <hr>
+{% empty %}
+  <p>購物車是空的。</p>
+{% endfor %}

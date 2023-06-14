@@ -21,6 +21,7 @@ from CookieSessionApp import views as csviews
 from flower import views as fviews
 from news import views as nviews
 from boardapp import views as bviews
+from shop import views as shviews
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -87,9 +88,17 @@ urlpatterns = [
     # allauth
     path('accounts/', include('allauth.urls')),
 
+    #flower
     path('flower/', fviews.flowers),
     path('flower/create/', fviews.create, name='create'),
     path('flower/edit/<int:pk>/', fviews.edit, name='edit'),
     path('flower/delete/<int:pk>/', fviews.delete, name='delete'),
     path('flower/<slug:slug>/', fviews.detail, name='detail'), 
+
+    #shop
+    path('products/', shviews.product_list, name='product_list'),
+    path('add-to-cart/<int:product_id>/', shviews.add_to_cart, name='add_to_cart'),
+    path('cart/', shviews.cart, name='cart'),
+    path('productdetail/<int:product_id>/',shviews.product_detail, name='product_detail'),
+    path('orderconfirm/',shviews.order_confirmation,name='order_confirmation'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
